@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Sax parser escape characters.
+] >>	"ampbra;"
+XML escape characters
+' >>    "&apos;"
+--> 
+
+<test>
+	<!-- This is a flow to test "agent log in" functionality, this flow corresponds to 
+	the test case of id '44' which is failed according the bug with id '23' -->
+	<flow name='agent login' defect='23' testcaseid='44' env='env2'>
+		
+		<clicklink locatortype='linkText'>Agent Login</clicklink>
+		<typetext  locatortype='id' locator='email'>agent1-test@quakebill.com</typetext>
+		<typetext locatortype='id' locator='passwd'>test123</typetext>
+		<clickbutton locatortype='xpath'>//input[@alt='Log In'ampbra;</clickbutton>
+		
+		<verifytext positive='true'>FirstName LastName</verifytext>
+		<verifytext positive='true'>Log Out</verifytext>
+		<verifytext positive='false'>Log In</verifytext>
+	</flow>	
+	
+	<flow name='agent logout' defect='23' testcaseid='44' preflow='agent login' env='env2'>
+		
+		<clicklink locatortype='linkText'>Log Out</clicklink>
+		
+		<verifytext positive='false'>FirstName LastName</verifytext>
+		<verifytext positive='false'>Log Out</verifytext>
+		<verifytext positive='true'>Log In</verifytext>
+	</flow>
+</test>

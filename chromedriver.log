@@ -1,0 +1,2 @@
+[1210/182842:ERROR:scoped_temp_dir.cc(70)] ScopedTempDir unable to delete C:\DOCUME~1\TWEETA~1\LOCALS~1\Temp\scoped_dir7237
+[1210/182842:WARNING:scoped_temp_dir.cc(15)] Could not delete temp dir in dtor.
