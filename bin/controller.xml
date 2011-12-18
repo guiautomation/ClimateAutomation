@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+<!--
+Sax parser escape characters.
+] >>	"ampbra;"
+XML escape characters
+' >>    "&apos;"
+--> 
+
 <test>
 	<!-- This is a flow to test "agent log in" functionality, this flow corresponds to 
 	the test case of id '44' which is failed according the bug with id '23' -->
-	<flow name='agent login' defect='23' testcaseid='44' env='env1'>
+	<flow name='agent login' defect='23' testcaseid='44' env='env2'>
 		
 		<clicklink locatortype='linkText'>Agent Login</clicklink>
 		<typetext  locatortype='id' locator='email'>agent1-test@quakebill.com</typetext>
@@ -15,175 +21,12 @@
 		<verifytext positive='false'>Log In</verifytext>
 	</flow>	
 	
-	
-	
-	<!-- This is a flow to test "Purchase TWI Corn" functionality, which should be excuted after " log in " flow -->
-	
-	<flow  name='Purchase TWI Corn'  preflow='agent login'  env='env1'>
+	<flow name='agent logout' defect='23' testcaseid='44' preflow='agent login' env='env2'>
 		
-		<!-- Filling the form for risk report -->
-		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
-		<clickbutton locatortype='id'>risk_report_submit</clickbutton>
-	    <select  locatortype='id' locator='risk_report_coverage_level'>80%</select>
-		<typetext  locatortype='id' locator='risk_report_formatted_aph'>170</typetext>
-		<typetext  locatortype='id' locator='risk_report_formatted_base_price'>6.50</typetext>
-		<typetext  locatortype='id' locator='risk_report_formatted_expected_yield'>210</typetext>
-		<typetext  locatortype='id' locator='risk_report_formatted_input_costs'>750</typetext>
-		<typetext  locatortype='id' locator='risk_report_specified_formatted_crop_insurance_cost'>60</typetext>
-		<select  locatortype='id' locator='risk_report_selectable_crop_id'>Corn</select>
-		<typetext  locatortype='id' locator='risk_report_formatted_location'>Clay, IA</typetext>
-		<clickbutton locatortype='xpath'>//input[@alt='Submit'ampbra;</clickbutton>
-		<waitseconds>10</waitseconds>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//img[@alt='Next'ampbra;</clickbutton>
-		<waitseconds>10</waitseconds>
-		<clickbutton locatortype='xpath'>//div[@id='precip_map'ampbra;/div/div/div/div[4ampbra;/div/div/div[12ampbra;</clickbutton>
-	    <waitseconds>10</waitseconds>
-		<typetext locatortype='xpath' locator='//textarea[@class=&apos;name greyed_out&apos;]'>test</typetext>
-		<typetext locatortype='xpath' locator='//input[@class=&apos;acres&apos;]'>100</typetext>
-		<clickbutton locatortype='xpath'>//input[@value='Save'ampbra;</clickbutton>
-		<clickbutton locatortype='xpath'>//input[@alt='Next'ampbra;</clickbutton>
+		<clicklink locatortype='linkText'>Log Out</clicklink>
 		
-		<clickbutton locatortype='xpath'>//input[@alt='Next'ampbra;</clickbutton>
-	
-		<clickbutton locatortype='xpath'>//img[@alt='Buy Now'ampbra;</clickbutton>
-		<select locatortype='id' locator='insured'>Businessname (FirstName LastName)</select>
-	    
-		<clickbutton locatortype='id'>assign_button</clickbutton>
-			
-		<clickbutton locatortype='id'>legal-acknowledgement</clickbutton>
-		<clicklink locatortype='linkText'>Confirm Purchase</clicklink>
-		<waitseconds>5</waitseconds>
+		<verifytext positive='false'>FirstName LastName</verifytext>
+		<verifytext positive='false'>Log Out</verifytext>
+		<verifytext positive='true'>Log In</verifytext>
 	</flow>
-	
-	<flow name='Save Low Heat Units Policy'  preflow='agent login' defect='23' testcaseid='44' env='env1'>
-		
-		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
-		
-		<clicklink locatortype='xpath'>//a[@href='/growers/total-weather-insurance/named-peril'ampbra;</clicklink>
-		<waitseconds>2</waitseconds>
-		<clicklink locatortype='linkText'>Low Heat Units</clicklink>
-		
-		<clicklink locatortype='linkText'>Get Online Quote</clicklink>
-		<waitseconds>4</waitseconds>
-		<clicklink locatortype='id'>mtgt_unnamed_8</clicklink>
-		
-		<typetext locatortype='id' locator='startDate'>2/1/2012</typetext>
-		
-		<typetext locatortype='id' locator='endDate'>3/1/2012</typetext>
-		<select locatortype='id' locator='crop'>Corn</select>
-		<typetext locatortype='id' locator='acres'>100</typetext>
-		<clickbutton locatortype='xpath'>//input[@class='get_quote'ampbra;</clickbutton>
-	    <waitseconds>12</waitseconds> 
-	    		
-		<clicklink locatortype='linkText'>Save/Print All</clicklink>
-		<waitseconds>10</waitseconds>
-		<select locator='insured'>Businessname (FirstName LastName)</select>
-		<waitseconds>4</waitseconds>
-		<clickbutton locatortype='id'>assign_button</clickbutton>
-		<waitseconds>20</waitseconds>
-	
-	</flow>
-	
-		<!-- This is a flow to test "Purchase Low Heat Units" functionality, which should be excuted after " log in " flow -->
-	
-	
-	<flow name='Purchase Low Heat Units'  preflow='agent login' defect='23' testcaseid='44' env='env1'>
-		
-		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
-		
-		<clicklink locatortype='xpath'>//a[@href='/growers/total-weather-insurance/named-peril'ampbra;</clicklink>
-		<waitseconds>2</waitseconds>
-		<clicklink locatortype='linkText'>Low Heat Units</clicklink>
-		
-		<clicklink locatortype='linkText'>Get Online Quote</clicklink>
-		<waitseconds>4</waitseconds>
-		<clicklink locatortype='id'>mtgt_unnamed_8</clicklink>
-		
-		<typetext locatortype='id' locator='startDate'>2/1/2012</typetext>
-		
-		<typetext locatortype='id' locator='endDate'>3/1/2012</typetext>
-		<select locatortype='id' locator='crop'>Corn</select>
-		<typetext locatortype='id' locator='acres'>100</typetext>
-		<clickbutton locatortype='xpath'>//input[@alt='get quote'ampbra;</clickbutton>
-	    <waitseconds>12</waitseconds>
-	    
-	    <verifytext positive='true'>Coverage Details</verifytext>
-	
-		
-		<clicklink locatortype='linkText'>Purchase</clicklink>
-		<waitseconds>10</waitseconds>
-		<select locator='insured'>Businessname (FirstName LastName)</select>
-		<waitseconds>4</waitseconds>
-		<clickbutton locatortype='id'>assign_button</clickbutton>
-		<waitseconds>10</waitseconds>
-	    <clickbutton locatortype='id'>legal-acknowledgement</clickbutton>
-	    <clicklink locatortype='linkText'>Confirm Purchase</clicklink>
-		
-	
-	</flow>
-	
-	
-	
-	
-	<!-- 
-	
-	
-	
-	
-	
-	
-	<flow name='employee login'  env='env1'>
-		
-		<clicklink locatortype='xpath'>//li[@class='agent_login'ampbra;/span/a</clicklink>
-		<typetext  locatortype='id' locator='email'>employee1-test@quakebill.com</typetext>
-		<typetext locatortype='id' locator='passwd'>test123</typetext>
-		<clickbutton locatortype='xpath'>//input[@alt='Log In'ampbra;</clickbutton>
-		
-		<verifytext positive='true'>FirstName LastName</verifytext>
-		<verifytext positive='true'>Log Out</verifytext>
-		<verifytext positive='false'>Log In</verifytext>
-	</flow>	
-	
-	<flow name='create new agency' preflow='employee login' env='env2'>
-	
-	<clicklink locatortype='linkText'>Agencies</clicklink>
-	<clicklink locatortype='linkText'>New Agency</clicklink>
-	<typetext locatortype='id' locator='account_business_name'>testbus</typetext>
-	<typetext locatortype='id' locator='account_fee'>14%</typetext>
-	<typetext locatortype='id' locator='account_official_name'>officialname</typetext>
-	<typetext locatortype='id' locator='account_npn'>12345677</typetext>
-	<typetext locatortype='id' locator='account_fein'>12345677</typetext>
-	
-	<typetext locatortype='name' locator='agents[0][first_name]'>autoagentfirst</typetext>
-	<typetext locatortype='name' locator='agents[0][last_name]'>autoagentlast</typetext>
-	<typetext locatortype='name' locator='agents[0][email]'>guiautomation@gmail.com</typetext>
-	<typetext locatortype='name' locator='agents[0][contact_phone]'>56567755672</typetext>
-	<typetext locatortype='name' locator='agents[0][account_address][addr1]'>Address1</typetext>
-	<typetext locatortype='name' locator='agents[0][account_address][city]'>city</typetext>
-	<typetext locatortype='name' locator='agents[0][account_address][postal_code]'>15601</typetext>
-	<clickbutton locatortype='id'>agents_0_agent_can_sell_twi</clickbutton>
-	agents_0_agent_can_sell_twi
-	 upload_contract is not ready for now 
-	<clickbutton locatortype='xpath'>//input[@type='submit'ampbra;</clickbutton>
-	
-	
-	
-	</flow>
-	 -->
-	
-	
-	
-	
-	
-	
-	
-	
 </test>
