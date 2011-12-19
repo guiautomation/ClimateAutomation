@@ -11,7 +11,7 @@ import entities.Command;
 /**
  * 
  * @author gSoft Team
- *
+ * 
  */
 public class SelectCommand extends Command {
 

@@ -9,7 +9,7 @@ import entities.Command;
 /**
  * 
  * @author gSoft Team
- *
+ * 
  */
 public class VerifyElementCommand extends Command {
 

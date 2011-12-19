@@ -8,7 +8,7 @@ import entities.Command;
 /**
  * 
  * @author gSoft Team
- *
+ * 
  */
 public class ClickLinkCommand extends Command {
 

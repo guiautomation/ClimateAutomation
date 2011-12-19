@@ -253,7 +253,8 @@ public class Controller {
 				logger.error("Please add \"browser.type\" for all environments");
 			if (env.getBrowserUrl() == null || env.getBrowserUrl().equals(""))
 				logger.error("Please add \"browser.url\" for all environments");
-			if (env.getBrowserVersion() == null || env.getBrowserVersion().equals(""))
+			if (env.getBrowserVersion() == null
+					|| env.getBrowserVersion().equals(""))
 				logger.error("Please add \"browser.version\" for all environments");
 		}
 		// ......................................................................
