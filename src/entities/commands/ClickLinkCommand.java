@@ -8,7 +8,7 @@ import entities.Command;
 /**
  * 
  * @author gSoft Team
- *
+ * 
  */
 public class ClickLinkCommand extends Command {
 
@@ -40,25 +40,31 @@ public class ClickLinkCommand extends Command {
 					webDriver.findElement(By.linkText(locator)).click();
 				else if (this.locatorType.equals(LocatorType.PARTIAL_LINK_TEXT))
 					webDriver.findElement(By.partialLinkText(locator)).click();
+				webDriver.switchTo().defaultContent();
 			} catch (Exception e) {
 				throw new Exception("locator not found: " + locator);
 			}
 		} else {
 			try {
 				webDriver.findElement(By.id(locator)).click();
+				webDriver.switchTo().defaultContent();
 			} catch (Exception e) {
 				try {
 					webDriver.findElement(By.xpath(locator)).click();
+					webDriver.switchTo().defaultContent();
 				} catch (Exception e2) {
 					try {
 						webDriver.findElement(By.linkText(locator)).click();
+						webDriver.switchTo().defaultContent();
 					} catch (Exception e3) {
 						try {
 							webDriver.findElement(By.name(locator)).click();
+							webDriver.switchTo().defaultContent();
 						} catch (Exception e4) {
 							try {
 								webDriver.findElement(
 										By.partialLinkText(locator)).click();
+								webDriver.switchTo().defaultContent();
 							} catch (Exception e5) {
 								throw new Exception("locator not found: "
 										+ locator);

@@ -47,6 +47,7 @@ public class Email {
 		props.put("mail.smtp.password", pass);
 		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.required", "true");
 
 		Session session = Session.getDefaultInstance(props, null);
 		MimeMessage message = new MimeMessage(session);
@@ -92,7 +93,7 @@ public class Email {
 
 		message.setSubject("Automation Report (Auto-Generated Email)");
 
-		Transport transport = session.getTransport("smtp");
+		Transport transport = session.getTransport("smtps");
 		transport.connect(host, from, pass);
 		transport.sendMessage(message, message.getAllRecipients());
 		transport.close();

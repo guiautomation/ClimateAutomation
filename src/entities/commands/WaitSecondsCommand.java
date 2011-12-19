@@ -6,7 +6,7 @@ import entities.Command;
 /**
  * 
  * @author gSoft Team
- *
+ * 
  */
 public class WaitSecondsCommand extends Command {
 
