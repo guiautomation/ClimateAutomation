@@ -27,7 +27,7 @@ public class Email {
 	private static Logger logger = Logger.getLogger(Email.class);
 
 	public static void sendHtmlReportInEmail(Config config)
-			throws AddressException, MessagingException {
+			throws AddressException, MessagingException, InterruptedException {
 
 		String[] to = config.getEmailTo().split(",");
 		String temp = "";
@@ -95,7 +95,13 @@ public class Email {
 
 		Transport transport = session.getTransport("smtps");
 		transport.connect(host, from, pass);
-		transport.sendMessage(message, message.getAllRecipients());
+		if(transport.isConnected()){
+			transport.sendMessage(message, message.getAllRecipients());
+			Thread.sleep(10000);
+			logger.info("Email sent successfully");
+		}
+		else
+			logger.error("Cant connect to the mail server");
 		transport.close();
 
 	}
