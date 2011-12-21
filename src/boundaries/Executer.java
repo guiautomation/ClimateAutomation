@@ -102,18 +102,45 @@ public class Executer {
 						.getDefect());
 				reportEntry.setTestCaseId(flow.getTestCaseId() == null ? "-"
 						: flow.getTestCaseId());
+				
+				String hostName = null;
+				if(flow.getEnvironment()!= null && flow.getEnvironment().getHostName()!= null)
+					if(flow.getEnvironment().getHostName().contains("sauce"))
+						hostName="Sauce Labs";
+					else if(flow.getEnvironment().getHostName().contains("localhost"))
+						hostName="Local Host";
+				
 				reportEntry
-						.setBrowser((flow.getEnvironment().getBrowserType() == null ? "-"
+						.setBrowser((hostName==null ? "":hostName+", ")+(flow.getEnvironment().getBrowserType() == null ? "-"
 								: flow.getEnvironment().getBrowserType())
 								+ " "
 								+ (flow.getEnvironment().getBrowserVersion() == null ? ""
 										: flow.getEnvironment()
-												.getBrowserVersion()));
-				reportEntry.setTimeInMillis(endTime - startTime);
+												.getBrowserVersion())+
+												(flow.getEnvironment().getHostPlatform() == null ? ""
+														: (", "+flow.getEnvironment()
+																.getHostPlatform()))+
+																(flow.getEnvironment().getName() == null ? ""
+																		: (", "+flow.getEnvironment()
+																				.getName())));
+				reportEntry.setTimeInMillis(getTimeDuration(endTime, startTime));
 
 				htmlReport.addReportEntry(reportEntry);
 			}
 		}
+	}
+
+	private String getTimeDuration(long endTime, long startTime) {
+		long duration = endTime - startTime;
+
+		if (duration > 3600000)
+			return "" + duration / 3600000 + " hours";
+		else if (duration > 36000)
+			return "" + duration / 36000 + " minutes";
+		else if (duration > 1000)
+			return "" + duration / 1000 + " seconds";
+		else
+			return "" + duration + " millis";
 	}
 
 	/**

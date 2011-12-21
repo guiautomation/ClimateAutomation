@@ -13,10 +13,10 @@ public class ReportEntry {
 	private String bugId;
 	private String testCaseId;
 	private String browser;
-	private float timeInMillis;
+	private String timeInMillis;
 
 	public ReportEntry(String testName, boolean result, String fileName,
-			String bugId, String testCaseId, String browser, float timeInMillis) {
+			String bugId, String testCaseId, String browser, String timeInMillis) {
 		this.testName = testName;
 		this.fileName = fileName;
 		this.result = result;
@@ -70,11 +70,11 @@ public class ReportEntry {
 		this.browser = browser;
 	}
 
-	public float getTimeInMillis() {
+	public String getTimeInMillis() {
 		return timeInMillis;
 	}
 
-	public void setTimeInMillis(float timeInMillis) {
+	public void setTimeInMillis(String timeInMillis) {
 		this.timeInMillis = timeInMillis;
 	}
 

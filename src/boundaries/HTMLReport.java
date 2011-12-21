@@ -86,7 +86,7 @@ public class HTMLReport {
 
 				"<table style=\"border-style:solid; border-width:5px; ;width : 100%\">"
 				+ "<tr style=\"background-color:#BFA8AE;font-weight: bold\">"
-				+ "<td style=\"font-weight: bold\">Test name</td><td style=\"font-weight: bold\">Pass/Fail</td><td style=\"font-weight: bold\">File Name</td><td style=\"font-weight: bold\">Bug ID</td><td style=\"font-weight: bold\">TestCase ID</td><td style=\"font-weight: bold\">Browser</td><td style=\"font-weight: bold\">Time In Millis</td>"
+				+ "<td style=\"font-weight: bold\">Test name</td><td style=\"font-weight: bold\">Pass/Fail</td><td style=\"font-weight: bold\">File Name</td><td style=\"font-weight: bold\">Bug ID</td><td style=\"font-weight: bold\">TC ID</td><td style=\"font-weight: bold\">HostName/Browser/Platform/Ref</td><td style=\"font-weight: bold\">Time</td>"
 				+ "</tr>";
 
 	}
