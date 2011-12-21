@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Sax parser escape characters.
+] >>	"ampbra;"
+XML escape characters
+' >>    "&apos;"
+--> 
+
+<test>
+
+<flow name='Save Low Heat Units Policy'  preflow='agent login' env='sauce_env'>
+		
+		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
+		
+		<clicklink locatortype='xpath'>//a[@href='/growers/total-weather-insurance/named-peril'ampbra;</clicklink>
+		<waitseconds>2</waitseconds>
+		<clicklink locatortype='linkText'>Low Heat Units</clicklink>
+		
+		<clicklink locatortype='linkText'>Get Online Quote</clicklink>
+		<waitseconds>4</waitseconds>
+		<clicklink locatortype='id'>mtgt_unnamed_8</clicklink>
+		
+		<typetext locatortype='id' locator='startDate'>2/1/2012</typetext>
+		
+		<typetext locatortype='id' locator='endDate'>3/1/2012</typetext>
+		<select locatortype='id' locator='crop'>Corn</select>
+		<typetext locatortype='id' locator='acres'>100</typetext>
+		<clickbutton locatortype='xpath'>//input[@alt='get quote'ampbra;</clickbutton>
+	    <waitseconds>12</waitseconds>
+	    
+	    <verifytext positive='true'>Coverage Details</verifytext>
+	
+		
+		<clicklink locatortype='linkText'>Save/Print All</clicklink>
+		<waitseconds>10</waitseconds>
+		<select locator='insured'>Businessname (FirstName LastName)</select>
+		<waitseconds>4</waitseconds>
+		<clickbutton locatortype='id'>assign_button</clickbutton>
+		<waitseconds>15</waitseconds>
+	</flow>
+		
+	<flow name='Purchase Low Heat Units Policy'  preflow='agent login' env='sauce_env'>
+		
+		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
+		
+		<clicklink locatortype='xpath'>//a[@href='/growers/total-weather-insurance/named-peril'ampbra;</clicklink>
+		<waitseconds>2</waitseconds>
+		<clicklink locatortype='linkText'>Low Heat Units</clicklink>
+		
+		<clicklink locatortype='linkText'>Get Online Quote</clicklink>
+		<waitseconds>4</waitseconds>
+		<clicklink locatortype='id'>mtgt_unnamed_8</clicklink>
+		
+		<typetext locatortype='id' locator='startDate'>2/1/2012</typetext>
+		
+		<typetext locatortype='id' locator='endDate'>3/1/2012</typetext>
+		<select locatortype='id' locator='crop'>Corn</select>
+		<typetext locatortype='id' locator='acres'>100</typetext>
+		<clickbutton locatortype='xpath'>//input[@alt='get quote'ampbra;</clickbutton>
+	    <waitseconds>12</waitseconds>
+	    
+	    <verifytext positive='true'>Coverage Details</verifytext>
+	
+		
+		<clicklink locatortype='linkText'>Purchase</clicklink>
+		<waitseconds>10</waitseconds>
+		<select locator='insured'>Businessname (FirstName LastName)</select>
+		<waitseconds>4</waitseconds>
+		<clickbutton locatortype='id'>assign_button</clickbutton>
+		<waitseconds>20</waitseconds>
+		<clickbutton locatortype='id'>legal-acknowledgement</clickbutton>
+		<clickbutton locatortype='xpath'>//a[text()='Confirm Purchase'ampbra;</clickbutton>
+		<waitseconds>3</waitseconds>	
+	
+	</flow>
+
+	
+</test>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Sax parser escape characters.
+] >>	"ampbra;"
+XML escape characters
+' >>    "&apos;"
+--> 
+
+<test>
+	<flow name='Save Storm Flood Policy'  preflow='agent login'  defect='WB-7490' env='sauce_env'>
+		
+		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
+		
+		<clicklink locatortype='xpath'>//a[@href='/growers/total-weather-insurance/named-peril'ampbra;</clicklink>
+		<waitseconds>2</waitseconds>
+		<clicklink locatortype='linkText'>Storm Flood</clicklink>
+		
+		<clicklink locatortype='linkText'>Get Online Quote</clicklink>
+		<waitseconds>4</waitseconds>
+		<clicklink locatortype='id'>    Newton County, MO
+    WB ID: 368194374</clicklink>
+		
+		<typetext locatortype='id' locator='startDate'>2/1/2012</typetext>
+		
+		<typetext locatortype='id' locator='endDate'>3/1/2012</typetext>
+		<select locatortype='id' locator='len0'>1 day</select>
+		<select locatortype='id' locator='rain_threshold0'>3"</select>
+		<typetext locatortype='id' locator='payout_per_acre0'>100</typetext>
+		
+		<typetext locatortype='id' locator='total_coverage_per_acre'>200</typetext>
+		<typetext locatortype='id' locator='deductible_per_acre'>0</typetext>
+		<typetext locatortype='id' locator='acres'>100</typetext>
+		
+		
+		
+		<clickbutton locatortype='xpath'>//input[@class='get_quote'ampbra;</clickbutton>
+	    <waitseconds>12</waitseconds> 
+	    		
+		<clicklink locatortype='linkText'>Save/Print</clicklink>
+		<waitseconds>10</waitseconds>
+		<select locator='insured'>Businessname (FirstName LastName)</select>
+		<waitseconds>4</waitseconds>
+		<clickbutton locatortype='id'>assign_button</clickbutton>
+		<waitseconds>10</waitseconds>
+	
+	</flow>
+	
+		<!-- This is a flow to test "Purchase Low Heat Units" functionality, which should be excuted after " log in " flow -->
+	
+	
+	<flow name='Purchase Storm Flood Policy'  preflow='agent login' defect='WB-7490'  env='sauce_env'>
+		
+		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
+		
+		<clicklink locatortype='xpath'>//a[@href='/growers/total-weather-insurance/named-peril'ampbra;</clicklink>
+		<waitseconds>2</waitseconds>
+		<clicklink locatortype='linkText'>Storm Flood</clicklink>
+		
+		<clicklink locatortype='linkText'>Get Online Quote</clicklink>
+		<waitseconds>4</waitseconds>
+		<clicklink locatortype='id'>    Newton County, MO
+    WB ID: 368194374</clicklink>
+		
+		<typetext locatortype='id' locator='startDate'>2/1/2012</typetext>
+		
+		<typetext locatortype='id' locator='endDate'>3/1/2012</typetext>
+		<select locatortype='id' locator='len0'>1 day</select>
+		<select locatortype='id' locator='rain_threshold0'>3"</select>
+		<typetext locatortype='id' locator='payout_per_acre0'>100</typetext>
+		
+		<typetext locatortype='id' locator='total_coverage_per_acre'>200</typetext>
+		<typetext locatortype='id' locator='deductible_per_acre'>0</typetext>
+		<typetext locatortype='id' locator='acres'>100</typetext>
+		
+		
+		
+		<clickbutton locatortype='xpath'>//input[@class='get_quote'ampbra;</clickbutton>
+	    <waitseconds>12</waitseconds>
+	
+		
+		<clicklink locatortype='linkText'>Purchase</clicklink>
+		<waitseconds>10</waitseconds>
+		<select locator='insured'>Businessname (FirstName LastName)</select>
+		<waitseconds>4</waitseconds>
+		<clickbutton locatortype='id'>assign_button</clickbutton>
+		<waitseconds>10</waitseconds>
+	    <clickbutton locatortype='id'>legal-acknowledgement</clickbutton>
+	    <clicklink locatortype='linkText'>Confirm Purchase</clicklink>
+		
+	
+	</flow>
+	
+</test>

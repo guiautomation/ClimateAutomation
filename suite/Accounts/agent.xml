@@ -9,7 +9,7 @@ XML escape characters
 <test>
 	<!-- This is a flow to test "agent log in" functionality, this flow corresponds to 
 	the test case of id '44' which is failed according the bug with id '23' -->
-	<flow name='agent login' env='env1'>
+	<flow name='agent login' env='sauce_env'>
 		
 		<clicklink locatortype='linkText'>Agent Login</clicklink>
 		<typetext  locatortype='id' locator='email'>agent1-test@quakebill.com</typetext>
