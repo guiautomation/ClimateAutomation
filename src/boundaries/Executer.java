@@ -86,11 +86,30 @@ public class Executer {
 				logger.warn("It seems there is a flow without name in the file: "
 						+ flow.getFileName());
 			else {
+				
+				//Update ProgressBar
+				if(config.isProgressBarEnable()){
+					ProgressBar.setCurrentFlow(flow.getName(), flow.getFileName());
+				}
+				
 				// Execute flow.
 				long startTime = System.currentTimeMillis();
 				int result = executeFlow(flow);
 				long endTime = System.currentTimeMillis();
-
+				
+				//Update ProgressBar
+				if(config.isProgressBarEnable()){
+					if(result==1)
+						ProgressBar.successListOfFlows.addItem(flow.getName());
+					else if(result==0)
+						ProgressBar.failListOfFlows.addItem(flow.getName());
+					ProgressBar.updateResult(result);
+					if(ProgressBar.executed < ProgressBar.expected){
+						ProgressBar.count+=(ProgressBar.expected-ProgressBar.executed);
+						ProgressBar.setValue();
+					}
+				}
+				
 				// Add flow result to the Html report.
 				ReportEntry reportEntry = new ReportEntry();
 
@@ -130,17 +149,34 @@ public class Executer {
 		}
 	}
 
+	/**
+	 * 
+	 * @param endTime
+	 * @param startTime
+	 * @return
+	 */
 	private String getTimeDuration(long endTime, long startTime) {
-		long duration = endTime - startTime;
+		float duration = endTime - startTime;
 
 		if (duration > 3600000)
-			return "" + duration / 3600000 + " hours";
-		else if (duration > 36000)
-			return "" + duration / 36000 + " minutes";
+			return "" + getDuration(duration / 3600000) + " hours";
+		else if (duration > 60000)
+			return "" + getDuration(duration / 60000) + " minutes";
 		else if (duration > 1000)
-			return "" + duration / 1000 + " seconds";
+			return "" + getDuration(duration / 1000) + " seconds";
 		else
-			return "" + duration + " millis";
+			return "" + getDuration(duration) + " millis";
+	}
+
+	/**
+	 * 
+	 * @param duration
+	 * @return
+	 */
+	private String getDuration(float duration) {
+		Float float1=new Float(duration);
+		String float2=String.valueOf(float1);
+		return (float2.length()>4 ? float2.substring(0, 3): float2);
 	}
 
 	/**
@@ -152,7 +188,11 @@ public class Executer {
 	 * @throws URISyntaxException
 	 */
 	private int executeFlow(Flow flow) throws Exception {
-
+		
+		if(config.isProgressBarEnable())
+			if(flow!=null && flow.getListOfCommands()!=null)
+				ProgressBar.expected+=flow.getListOfCommands().size();
+			
 		if (!flow.isInPreCycle())
 			currentFlowUnderExecution = flow;
 		int result = 1;
@@ -278,6 +318,11 @@ public class Executer {
 	 */
 	private void cleanEnvironment(Environment environment) {
 		logger.info("Clean environment: " + environment);
+		
+		if(config.isProgressBarEnable()){
+			ProgressBar.progressBar.setToolTipText("Clean Env:"+environment.toString());
+		}
+		
 		webDriver.quit();
 		currentFlowUnderExecution = new Flow();
 	}
@@ -291,6 +336,10 @@ public class Executer {
 	 */
 	private void setupEnvironment(Environment environment) throws Exception {
 		logger.info("Setup environment: " + environment);
+		
+		if(config.isProgressBarEnable()){
+			ProgressBar.progressBar.setToolTipText("Setup Env:"+environment.toString());
+		}
 
 		// localhost
 		if (environment.getHostName().equals("localhost")) {
@@ -439,7 +488,12 @@ public class Executer {
 	 */
 	private void executeCommand(Command command) throws Exception {
 		logger.info("Execute command: " + command);
-
+		
+		if(config.isProgressBarEnable()){
+			ProgressBar.progressBar.setToolTipText(command.toString());
+			ProgressBar.setValue();
+		}
+		
 		command.setWebDriver(webDriver);
 
 		if (command instanceof ClickLinkCommand) {

@@ -14,6 +14,8 @@ public class Config {
 	private String suiteDir;
 	private String reportDir;
 
+	private boolean progressBarEnable;
+	
 	private boolean emailEnable;
 	private String emailTo;
 	private String emailHost;
@@ -23,13 +25,16 @@ public class Config {
 
 	private HashMap<String, Environment> listOfEnvironments = new HashMap<String, Environment>();
 
+	
 	public Config(String build, String suiteDir, String reportDir,
-			boolean emailEnable, String emailTo, String emailHost,
-			String emailFrom, String emailPassword, boolean emailAttachedLog,
+			boolean progressBarEnable, boolean emailEnable, String emailTo,
+			String emailHost, String emailFrom, String emailPassword,
+			boolean emailAttachedLog,
 			HashMap<String, Environment> listOfEnvironments) {
 		this.build = build;
 		this.suiteDir = suiteDir;
 		this.reportDir = reportDir;
+		this.progressBarEnable = progressBarEnable;
 		this.emailEnable = emailEnable;
 		this.emailTo = emailTo;
 		this.emailHost = emailHost;
@@ -123,11 +128,20 @@ public class Config {
 	public String getBuild() {
 		return build;
 	}
+	
+	public void setProgressBarEnable(boolean progressBarEnable) {
+		this.progressBarEnable = progressBarEnable;
+	}
+
+	public boolean isProgressBarEnable() {
+		return progressBarEnable;
+	}
 
 	@Override
 	public String toString() {
 		return "Config [build=" + build + ", suiteDir=" + suiteDir
-				+ ", reportDir=" + reportDir + ", emailEnable=" + emailEnable
+				+ ", reportDir=" + reportDir + ", progressBarEnable="
+				+ progressBarEnable + ", emailEnable=" + emailEnable
 				+ ", emailTo=" + emailTo + ", emailHost=" + emailHost
 				+ ", emailFrom=" + emailFrom + ", emailPassword="
 				+ emailPassword + ", emailAttachedLog=" + emailAttachedLog

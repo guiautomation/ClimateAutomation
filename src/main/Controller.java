@@ -18,6 +18,7 @@ import boundaries.Email;
 import boundaries.Executer;
 import boundaries.HTMLReport;
 import boundaries.Parser;
+import boundaries.ProgressBar;
 import entities.CmdType;
 import entities.Config;
 import entities.Constants;
@@ -35,7 +36,6 @@ import entities.Flow;
  * 
  */
 public class Controller {
-
 	private static Config config;
 	private static ArrayList<String> controllerFiles = new ArrayList<String>();
 	private static HTMLReport htmlReport;
@@ -105,14 +105,66 @@ public class Controller {
 				}
 			}
 
+			if(config.isProgressBarEnable())
+				ProgressBar.ini();
+			
 			HashMap<Integer, Flow> listOfFlows = Parser.getFlowsList();
+			
+			if(config.isProgressBarEnable())
+				ProgressBar.setMax(getNumberOfCommandsToExecute(listOfFlows));
+			
 			Executer executer = new Executer(htmlReport, config, listOfFlows);
 			executer.executeTheListOfFlows();
-
+			
+			if(config.isProgressBarEnable()){
+					ProgressBar.progressBar.setValue(ProgressBar.progressBar.getMaximum());
+			}
+			
 		} catch (Exception e) {
 			logger.error(e.toString(), e);
 		}
 
+	}
+
+	/**
+	 * 
+	 * @param listOfFlows
+	 * @return
+	 */
+	private int getNumberOfCommandsToExecute(HashMap<Integer, Flow> listOfFlows) {
+		int numberOfCommands=0;
+		Set<Integer> keySet = listOfFlows.keySet();
+		Iterator<Integer> iterator = keySet.iterator();
+		// iterate all flows
+		while (iterator.hasNext()) {
+			Integer flowId = iterator.next();
+			Flow flow = listOfFlows.get(flowId);
+			if (flow != null && flow.getName() != null && !flow.getName().equals(""))
+				numberOfCommands += getNumberOfCommands(flow);
+			
+		}
+		
+		return numberOfCommands;
+	}
+
+	/**
+	 * 
+	 * @param flow
+	 * @return
+	 */
+	private int getNumberOfCommands(Flow flow) {
+		if(flow.getListOfCommands()==null)
+			return 0;
+		
+		if (flow.getPreFlow() != null && !flow.getPreFlow().equals("")) {
+			if (Parser.getNameIdFlowMapping().containsKey(flow.getPreFlow())) {
+				Flow preFlow = Parser.getFlowsList().get(Parser.getNameIdFlowMapping().get(
+						flow.getPreFlow()));
+				return flow.getListOfCommands().size()+getNumberOfCommands(preFlow);
+			}
+		}
+		
+		return flow.getListOfCommands().size();
 	}
 
 	/**
@@ -205,6 +257,10 @@ public class Controller {
 				else if (attribute[0].equals(Constants.BUILD))
 					config.setBuild(attribute[1]);
 
+				else if (attribute[0].equals(Constants.PROGRESS_BAR_ENABLE))
+					config.setProgressBarEnable(attribute[1].trim().equals("true") ? true
+							: false);
+				
 				else if (attribute[0].equals(Constants.EMAIL_ENABLE))
 					config.setEmailEnable(attribute[1].trim().equals("true") ? true
 							: false);

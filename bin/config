@@ -7,7 +7,9 @@
 build=1.1
 suiteDir=./suite
 
-email.enable=true
+progress.bar.enable=true
+
+email.enable=false
 email.host=smtp.gmail.com
 email.from=guiautomation@gmail.com
 email.password=Pass12345678
@@ -15,7 +17,7 @@ email.to=mohammad.kmail@gsofttech.com
 email.attach.log=true
 
 // --------Local Environment----------
-environment=env1
+environment=localhost_env
 host.name=localhost
 host.platform=xp
 host.port=4444
@@ -30,8 +32,8 @@ webDriver.delete.allCookies=true
 
 
 // --------Sauce Environment----------
-environment=env2
-host.name=http://moh_kmail:7a49ba2b-46ac-475e-b3a7-6af2751ac11c@ondemand.saucelabs.com:80/wd/hub
+environment=sauce_env
+host.name=http://almared:2dedb19e-b6c3-43d8-8a0e-f7084fad5569@ondemand.saucelabs.com:80/wd/hub
 host.platform=xp
 host.port=444
 host.protocol=https

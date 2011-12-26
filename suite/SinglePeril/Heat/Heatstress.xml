@@ -7,7 +7,7 @@ XML escape characters
 --> 
 
 <test>
-	<flow name='Save Heat Stress Policy'  preflow='agent login'  env='sauce_env'>
+	<flow name='Save Heat Stress Policy'  preflow='agent login'  env='localhost_env'>
 		
 		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
 		
@@ -43,7 +43,7 @@ XML escape characters
 		<!-- This is a flow to test "Purchase Low Heat Units" functionality, which should be excuted after " log in " flow -->
 	
 	
-	<flow name='Purchase Heat Stress Policy'  preflow='agent login'  env='sauce_env'>
+	<flow name='Purchase Heat Stress Policy'  preflow='agent login'  env='localhost_env'>
 		
 		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
 		

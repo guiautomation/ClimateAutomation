@@ -8,7 +8,7 @@ XML escape characters
 
 <test>
 	
-	<flow name='Purchase Rainy Days Policy'  preflow='agent login'  env='sauce_env'>
+	<flow name='Purchase Rainy Days Policy'  preflow='agent login'  env='localhost_env'>
 		
 	<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
 		
@@ -48,7 +48,7 @@ XML escape characters
 	    <clicklink locatortype='linkText'>Confirm Purchase</clicklink>
 	
 	</flow>
-	<flow name='Save Rainy Days Policy'  preflow='agent login'  env='sauce_env'>
+	<flow name='Save Rainy Days Policy'  preflow='agent login'  env='localhost_env'>
 		
 		<clicklink locatortype='xpath'>//div[@id='main_nav'ampbra;/div/a</clicklink>
 		

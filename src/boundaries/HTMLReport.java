@@ -182,16 +182,22 @@ public class HTMLReport {
 	 */
 	private String getTimeDuration() {
 
-		long duration = this.endTime - this.startTime;
+		float duration = this.endTime - this.startTime;
 
 		if (duration > 3600000)
-			return "" + duration / 3600000 + " hours";
-		else if (duration > 36000)
-			return "" + duration / 36000 + " minutes";
+			return "" + getDuration(duration / 3600000) + " hours";
+		else if (duration > 60000)
+			return "" + getDuration(duration / 60000) + " minutes";
 		else if (duration > 1000)
-			return "" + duration / 1000 + " seconds";
+			return "" + getDuration(duration / 1000) + " seconds";
 		else
-			return "" + duration + " millis";
+			return "" + getDuration(duration) + " millis";
+	}
+
+	private String getDuration(float duration) {
+		Float float1=new Float(duration);
+		String float2=String.valueOf(float1);
+		return (float2.length()>4 ? float2.substring(0, 4): float2);
 	}
 
 }

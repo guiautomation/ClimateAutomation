@@ -7,7 +7,9 @@
 build=1.1
 suiteDir=./suite
 
-email.enable=true
+progress.bar.enable=true
+
+email.enable=false
 email.host=smtp.gmail.com
 email.from=guiautomation@gmail.com
 email.password=Pass12345678
