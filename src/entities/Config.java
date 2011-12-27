@@ -15,7 +15,7 @@ public class Config {
 	private String reportDir;
 
 	private boolean progressBarEnable;
-	
+
 	private boolean emailEnable;
 	private String emailTo;
 	private String emailHost;
@@ -25,7 +25,6 @@ public class Config {
 
 	private HashMap<String, Environment> listOfEnvironments = new HashMap<String, Environment>();
 
-	
 	public Config(String build, String suiteDir, String reportDir,
 			boolean progressBarEnable, boolean emailEnable, String emailTo,
 			String emailHost, String emailFrom, String emailPassword,
@@ -128,7 +127,7 @@ public class Config {
 	public String getBuild() {
 		return build;
 	}
-	
+
 	public void setProgressBarEnable(boolean progressBarEnable) {
 		this.progressBarEnable = progressBarEnable;
 	}

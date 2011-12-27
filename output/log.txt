@@ -1,43 +1,37 @@
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - Supported Commands:
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - waitseconds
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - clicklink
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - clickbutton
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - typetext
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - navigate
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - verifytext
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - select
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - checkbox
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - selectradiobutton
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - verifyelement
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - verifylink
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - 
-2011-12-19 18:58:26,044 [main] INFO  main.Controller - ------------------------------
-2011-12-19 18:58:26,060 [main] INFO  main.Controller - ...Setup the test...
-2011-12-19 18:58:26,060 [main] INFO  main.Controller - ------------------------------
-2011-12-19 18:58:26,060 [main] INFO  main.Controller - Loading the config file "./suite/config.txt" is completed with the following params:
-2011-12-19 18:58:26,060 [main] INFO  main.Controller - Config [build=1.1, suiteDir=./suite, reportDir=null, emailEnable=true, emailTo=mohammad.kmail@gsofttech.com, emailHost=smtp.gmail.com, emailFrom=guiautomation@gmail.com, emailPassword=Pass12345678, emailAttachedLog=true, listOfEnvironments={env1=Environment [name=env1, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true], env2=Environment [name=env2, hostName=http://moh_kmail:7a49ba2b-46ac-475e-b3a7-6af2751ac11c@ondemand.saucelabs.com:80/wd/hub, hostPort=444, hostProtocol=https, hostPlatform=xp, browserType=firefox, browserUrl=http://qa1.climate.com/, browserVersion=7, webDriverTimeouts=20, webDriverDeleteAllCookies=true]}]
-2011-12-19 18:58:26,076 [main] INFO  boundaries.HTMLReport - Initialize an Html report with title "Automation Report"
-2011-12-19 18:58:26,076 [main] INFO  main.Controller - ------------------------------
-2011-12-19 18:58:26,076 [main] INFO  main.Controller - ...Start the test...
-2011-12-19 18:58:26,076 [main] INFO  main.Controller - ------------------------------
-2011-12-19 18:58:26,076 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\Accounts\agent.xml"
-2011-12-19 18:58:26,123 [main] INFO  boundaries.Executer - 
-2011-12-19 18:58:26,123 [main] INFO  boundaries.Executer - **************************************************
-2011-12-19 18:58:26,123 [main] INFO  boundaries.Executer - Execute flow: Flow [id=0, name=agent login, defect=null, testCaseId=null, environment=Environment [name=env1, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true], fileName=C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\Accounts\agent.xml, preFlow=null, listOfCommands=[ClickLinkCommand [locator=Agent Login, locatorType=LINK_TEXT], TypeTextCommand [locator=email, locatorType=ID, value=agent1-test@quakebill.com], TypeTextCommand [locator=passwd, locatorType=ID, value=test123], ClickButtonCommand [locator=//input[@alt='Log In'], locatorType=XPATH], VerifyTextCommand [value=FirstName LastName, positive=true, commandType=VERIFY_TEXT], VerifyTextCommand [value=Log Out, positive=true, commandType=VERIFY_TEXT], VerifyTextCommand [value=Log In, positive=false, commandType=VERIFY_TEXT]], inPreCycle=false]
-2011-12-19 18:58:26,123 [main] INFO  boundaries.Executer - **************************************************
-2011-12-19 18:58:26,123 [main] INFO  boundaries.Executer - Setup environment: Environment [name=env1, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true]
-2011-12-19 18:58:40,716 [main] INFO  boundaries.Executer - Execute command: ClickLinkCommand [locator=Agent Login, locatorType=LINK_TEXT]
-2011-12-19 18:58:45,544 [main] INFO  boundaries.Executer - Execute command: TypeTextCommand [locator=email, locatorType=ID, value=agent1-test@quakebill.com]
-2011-12-19 18:58:50,794 [main] INFO  boundaries.Executer - Execute command: TypeTextCommand [locator=passwd, locatorType=ID, value=test123]
-2011-12-19 18:58:50,951 [main] INFO  boundaries.Executer - Execute command: ClickButtonCommand [locator=//input[@alt='Log In'], locatorType=XPATH]
-2011-12-19 18:58:51,201 [main] INFO  boundaries.Executer - Execute command: VerifyTextCommand [value=FirstName LastName, positive=true, commandType=VERIFY_TEXT]
-2011-12-19 18:58:54,685 [main] INFO  boundaries.Executer - Execute command: VerifyTextCommand [value=Log Out, positive=true, commandType=VERIFY_TEXT]
-2011-12-19 18:58:54,701 [main] INFO  boundaries.Executer - Execute command: VerifyTextCommand [value=Log In, positive=false, commandType=VERIFY_TEXT]
-2011-12-19 18:58:54,716 [main] INFO  boundaries.Executer - Clean environment: Environment [name=env1, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true]
-2011-12-19 18:58:55,060 [main] INFO  boundaries.HTMLReport - Add report entry: ReportEntry [testName=agent login, result=true, fileName=agent.xml, bugId=-, testCaseId=-, browser=FireFox 8, timeInMillis=28937.0]
-2011-12-19 18:58:55,060 [main] INFO  main.Controller - ------------------------------
-2011-12-19 18:58:55,060 [main] INFO  main.Controller - ...Tear down the test...
-2011-12-19 18:58:55,060 [main] INFO  main.Controller - ------------------------------
-2011-12-19 18:58:55,076 [main] INFO  boundaries.HTMLReport - Generate the HTML report in "C:\Documents and Settings\tweetadder\git\ClimateAutomation\output\report"
-2011-12-19 18:58:55,154 [main] INFO  boundaries.Email - Sending email to: mohammad.kmail@gsofttech.com
-2011-12-19 18:58:59,294 [main] INFO  main.Controller - output dir: C:\Documents and Settings\tweetadder\git\ClimateAutomation\output
+2011-12-27 13:17:31,515 [main] INFO  Main - Loading the config file "./suite/config.txt" is completed with the following params:
+2011-12-27 13:17:31,515 [main] INFO  Main - Config [build=1.1, suiteDir=./suite, reportDir=null, progressBarEnable=true, emailEnable=false, emailTo=mohammad.kmail@gsofttech.com, emailHost=smtp.gmail.com, emailFrom=guiautomation@gmail.com, emailPassword=Pass12345678, emailAttachedLog=true, listOfEnvironments={localhost_env=Environment [name=localhost_env, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true], sauce_env=Environment [name=sauce_env, hostName=http://almared:2dedb19e-b6c3-43d8-8a0e-f7084fad5569@ondemand.saucelabs.com:80/wd/hub, hostPort=444, hostProtocol=https, hostPlatform=xp, browserType=firefox, browserUrl=http://qa1.climate.com/, browserVersion=7, webDriverTimeouts=20, webDriverDeleteAllCookies=true]}]
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - Supported Commands:
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - waitseconds
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - clicklink
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - clickbutton
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - typetext
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - navigate
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - verifytext
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - select
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - checkbox
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - selectradiobutton
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - verifyelement
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - verifylink
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - 
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - ------------------------------
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - ...Setup the test...
+2011-12-27 13:17:32,515 [main] INFO  main.Controller - ------------------------------
+2011-12-27 13:17:32,531 [main] INFO  boundaries.HTMLReport - Initialize an Html report with title "Automation Report"
+2011-12-27 13:17:32,546 [main] INFO  main.Controller - ------------------------------
+2011-12-27 13:17:32,546 [main] INFO  main.Controller - ...Start the test...
+2011-12-27 13:17:32,546 [main] INFO  main.Controller - ------------------------------
+2011-12-27 13:17:32,546 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\Accounts\agent.xml"
+2011-12-27 13:17:32,578 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Drought\Drought.xml"
+2011-12-27 13:17:32,578 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Drought\RangeLandDrought.xml"
+2011-12-27 13:17:32,593 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Heat\Heatstress.xml"
+2011-12-27 13:17:32,593 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Heat\LowHeatUnits.xml"
+2011-12-27 13:17:32,593 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Rain\RainOnHay.xml"
+2011-12-27 13:17:32,609 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Rain\RainOnPlanting.xml"
+2011-12-27 13:17:32,609 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Rain\RainyDays.xml"
+2011-12-27 13:17:32,609 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Rain\RainySeason.xml"
+2011-12-27 13:17:32,609 [main] INFO  main.Controller - Parsing the file "C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\SinglePeril\Rain\StormFlood.xml"
+2011-12-27 13:17:32,625 [main] INFO  boundaries.Executer - 
+2011-12-27 13:17:32,625 [main] INFO  boundaries.Executer - **************************************************
+2011-12-27 13:17:32,625 [main] INFO  boundaries.Executer - Execute flow: Flow [id=0, name=agent login, defect=null, testCaseId=null, environment=Environment [name=localhost_env, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true], fileName=C:\Documents and Settings\tweetadder\git\ClimateAutomation\suite\Accounts\agent.xml, preFlow=null, listOfCommands=[ClickLinkCommand [locator=Agent Login, locatorType=LINK_TEXT], TypeTextCommand [locator=email, locatorType=ID, value=agent1-test@quakebill.com], TypeTextCommand [locator=passwd, locatorType=ID, value=test123], ClickButtonCommand [locator=//input[@alt='Log In'], locatorType=XPATH], VerifyTextCommand [value=FirstName LastName, positive=true, commandType=VERIFY_TEXT], VerifyTextCommand [value=Log Out, positive=true, commandType=VERIFY_TEXT], VerifyTextCommand [value=Log In, positive=false, commandType=VERIFY_TEXT]], inPreCycle=false]
+2011-12-27 13:17:32,625 [main] INFO  boundaries.Executer - **************************************************
+2011-12-27 13:17:32,625 [main] INFO  boundaries.Executer - Setup environment: Environment [name=localhost_env, hostName=localhost, hostPort=4444, hostProtocol=http, hostPlatform=xp, browserType=FireFox, browserUrl=http://qa1.climate.com/, browserVersion=8, webDriverTimeouts=20, webDriverDeleteAllCookies=true]

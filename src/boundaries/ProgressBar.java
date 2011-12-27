@@ -1,6 +1,5 @@
 package boundaries;
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,38 +12,49 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRootPane;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
 /**
  * 
  * @author gSoft Team
- *
+ * 
  */
-public class ProgressBar {
+public class ProgressBar extends Thread implements GUIHandler, Runnable {
 
-	public static int successFlag = 0;
-	public static int failFlag = 0;
+	private static int successFlag = 0;
+	private static int failFlag = 0;
 
-	public static int executed = 0;
-	public static int expected = 0;
-	public static int count = 0;
-	public static int flowsCount = 0;
-	public static int successCount = 0;
-	public static int failedCount = 0;
-	public static long startTime;
-	public static int max;
-	public static JLabel percentage;
-	public static JLabel currentFlow;
-	public static JLabel testNumber;
-	public static JLabel time;
-	public static JLabel success;
-	public static JLabel failed;
-	public static JProgressBar progressBar;
-	public static JComboBox failListOfFlows;
-	public static JComboBox successListOfFlows;
+	private static int executed = 0;
+	private static int expected = 0;
+	private static int count = 0;
+	private static int flowsCount = 0;
+	private static int successCount = 0;
+	private static int failedCount = 0;
+	private static long startTime;
+	private static int max;
+	public JLabel percentage;
+	public JLabel currentFlow;
+	public JLabel testNumber;
+	public JLabel time;
+	public JLabel success;
+	public JLabel failed;
+	public JProgressBar progressBar;
+	public JComboBox failListOfFlows;
+	public JComboBox successListOfFlows;
+	private JFrame frame;
 
-	public static void ini() {
+	public ProgressBar(ProgressBar guiHandler) {
+		guiHandler = this;
+	}
+
+	public ProgressBar() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
 		setStartTime(System.currentTimeMillis());
 		progressBar = new JProgressBar(0, 500);
 		progressBar.setSize(5, 5);
@@ -111,8 +121,8 @@ public class ProgressBar {
 		Border border = new LineBorder(new Color(0, 0, 240), 1);
 		content.setBorder(border);
 
-		JFrame frame = new JFrame("Progress Bar - The Climate Corporation");
-		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame = new JFrame("Progress Bar - The Climate Corporation");
+		frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		frame.setAlwaysOnTop(true);
 
 		frame.setUndecorated(true);
@@ -209,7 +219,8 @@ public class ProgressBar {
 
 	}
 
-	public static void setMax(int max) {
+	@Override
+	public void setMax(int max) {
 		progressBar.setMinimum(1);
 		progressBar.setMaximum(max + 1);
 		ProgressBar.max = max;
@@ -235,7 +246,8 @@ public class ProgressBar {
 		return count;
 	}
 
-	public static void updateResult(int result) {
+	@Override
+	public void updateResult(int result) {
 		if (result == 1)
 			success.setText("" + (++successCount));
 		else if (result == 0)
@@ -262,16 +274,18 @@ public class ProgressBar {
 		return (float2.length() > 4 ? float2.substring(0, 4) : float2);
 	}
 
-	public static void setCurrentFlow(String name, String fileName) {
+	@Override
+	public void setCurrentFlow(String name, String fileName) {
 		currentFlow.setText("" + name);
 		currentFlow.setToolTipText(fileName);
 		testNumber.setText("" + (++flowsCount));
 	}
 
-	public static void setValue() {
+	@Override
+	public void setValue() {
 		time.setText(getTimeDuration(System.currentTimeMillis(), startTime));
 		progressBar.setValue(++count);
-		executed = count;
+		setExecuted(count);
 		Float float1 = new Float(
 				(((float) (progressBar.getValue()) / (float) (progressBar
 						.getMaximum())) * 100));
@@ -281,6 +295,50 @@ public class ProgressBar {
 						+ (float2.length() > 4 ? float2.substring(0, 4)
 								: float2) + "%");
 
+	}
+
+	public static void setExecuted(int executed) {
+		ProgressBar.executed = executed;
+	}
+
+	public static int getExecuted() {
+		return executed;
+	}
+
+	public static void setExpected(int expected) {
+		ProgressBar.expected = expected;
+	}
+
+	public static int getExpected() {
+		return expected;
+	}
+
+	@Override
+	public JProgressBar getProgressBar() {
+		return progressBar;
+	}
+
+	@Override
+	public synchronized JComboBox getSuccessListOfFlows() {
+		return successListOfFlows;
+	}
+
+	public synchronized void setSuccessListOfFlows(JComboBox successListOfFlows) {
+		this.successListOfFlows = successListOfFlows;
+	}
+
+	@Override
+	public synchronized JComboBox getFailListOfFlows() {
+		return failListOfFlows;
+	}
+
+	public synchronized void setFailListOfFlows(JComboBox failListOfFlows) {
+		this.failListOfFlows = failListOfFlows;
+	}
+
+	@Override
+	public JFrame getFrame() {
+		return frame;
 	}
 
 }

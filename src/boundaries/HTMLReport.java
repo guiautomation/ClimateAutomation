@@ -195,9 +195,9 @@ public class HTMLReport {
 	}
 
 	private String getDuration(float duration) {
-		Float float1=new Float(duration);
-		String float2=String.valueOf(float1);
-		return (float2.length()>4 ? float2.substring(0, 4): float2);
+		Float float1 = new Float(duration);
+		String float2 = String.valueOf(float1);
+		return (float2.length() > 4 ? float2.substring(0, 4) : float2);
 	}
 
 }

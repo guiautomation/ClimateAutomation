@@ -95,12 +95,11 @@ public class Email {
 
 		Transport transport = session.getTransport("smtps");
 		transport.connect(host, from, pass);
-		if(transport.isConnected()){
+		if (transport.isConnected()) {
 			transport.sendMessage(message, message.getAllRecipients());
 			Thread.sleep(10000);
 			logger.info("Email has been sent successfully");
-		}
-		else
+		} else
 			logger.error("Cant connect to the mail server");
 		transport.close();
 

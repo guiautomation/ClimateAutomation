@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import main.Controller;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
@@ -86,30 +88,35 @@ public class Executer {
 				logger.warn("It seems there is a flow without name in the file: "
 						+ flow.getFileName());
 			else {
-				
-				//Update ProgressBar
-				if(config.isProgressBarEnable()){
-					ProgressBar.setCurrentFlow(flow.getName(), flow.getFileName());
+
+				// Update ProgressBar
+				if (config.isProgressBarEnable()) {
+					Controller.progressBar.setCurrentFlow(flow.getName(),
+							flow.getFileName());
 				}
-				
+
 				// Execute flow.
 				long startTime = System.currentTimeMillis();
 				int result = executeFlow(flow);
 				long endTime = System.currentTimeMillis();
-				
-				//Update ProgressBar
-				if(config.isProgressBarEnable()){
-					if(result==1)
-						ProgressBar.successListOfFlows.addItem(flow.getName());
-					else if(result==0)
-						ProgressBar.failListOfFlows.addItem(flow.getName());
-					ProgressBar.updateResult(result);
-					if(ProgressBar.executed < ProgressBar.expected){
-						ProgressBar.count+=(ProgressBar.expected-ProgressBar.executed);
-						ProgressBar.setValue();
+
+				// Update ProgressBar
+				if (config.isProgressBarEnable()) {
+					if (result == 1)
+						Controller.progressBar.getSuccessListOfFlows().addItem(
+								flow.getName());
+					else if (result == 0)
+						Controller.progressBar.getFailListOfFlows().addItem(
+								flow.getName());
+					Controller.progressBar.updateResult(result);
+					if (ProgressBar.getExecuted() < ProgressBar.getExpected()) {
+						ProgressBar.setCount(ProgressBar.getCount()
+								+ (ProgressBar.getExpected() - ProgressBar
+										.getExecuted()));
+						Controller.progressBar.setValue();
 					}
 				}
-				
+
 				// Add flow result to the Html report.
 				ReportEntry reportEntry = new ReportEntry();
 
@@ -121,28 +128,33 @@ public class Executer {
 						.getDefect());
 				reportEntry.setTestCaseId(flow.getTestCaseId() == null ? "-"
 						: flow.getTestCaseId());
-				
+
 				String hostName = null;
-				if(flow.getEnvironment()!= null && flow.getEnvironment().getHostName()!= null)
-					if(flow.getEnvironment().getHostName().contains("sauce"))
-						hostName="Sauce Labs";
-					else if(flow.getEnvironment().getHostName().contains("localhost"))
-						hostName="Local Host";
-				
+				if (flow.getEnvironment() != null
+						&& flow.getEnvironment().getHostName() != null)
+					if (flow.getEnvironment().getHostName().contains("sauce"))
+						hostName = "Sauce Labs";
+					else if (flow.getEnvironment().getHostName()
+							.contains("localhost"))
+						hostName = "Local Host";
+
 				reportEntry
-						.setBrowser((hostName==null ? "":hostName+", ")+(flow.getEnvironment().getBrowserType() == null ? "-"
-								: flow.getEnvironment().getBrowserType())
+						.setBrowser((hostName == null ? "" : hostName + ", ")
+								+ (flow.getEnvironment().getBrowserType() == null ? "-"
+										: flow.getEnvironment()
+												.getBrowserType())
 								+ " "
 								+ (flow.getEnvironment().getBrowserVersion() == null ? ""
 										: flow.getEnvironment()
-												.getBrowserVersion())+
-												(flow.getEnvironment().getHostPlatform() == null ? ""
-														: (", "+flow.getEnvironment()
-																.getHostPlatform()))+
-																(flow.getEnvironment().getName() == null ? ""
-																		: (", "+flow.getEnvironment()
-																				.getName())));
-				reportEntry.setTimeInMillis(getTimeDuration(endTime, startTime));
+												.getBrowserVersion())
+								+ (flow.getEnvironment().getHostPlatform() == null ? ""
+										: (", " + flow.getEnvironment()
+												.getHostPlatform()))
+								+ (flow.getEnvironment().getName() == null ? ""
+										: (", " + flow.getEnvironment()
+												.getName())));
+				reportEntry
+						.setTimeInMillis(getTimeDuration(endTime, startTime));
 
 				htmlReport.addReportEntry(reportEntry);
 			}
@@ -174,9 +186,9 @@ public class Executer {
 	 * @return
 	 */
 	private String getDuration(float duration) {
-		Float float1=new Float(duration);
-		String float2=String.valueOf(float1);
-		return (float2.length()>4 ? float2.substring(0, 3): float2);
+		Float float1 = new Float(duration);
+		String float2 = String.valueOf(float1);
+		return (float2.length() > 4 ? float2.substring(0, 3) : float2);
 	}
 
 	/**
@@ -188,11 +200,12 @@ public class Executer {
 	 * @throws URISyntaxException
 	 */
 	private int executeFlow(Flow flow) throws Exception {
-		
-		if(config.isProgressBarEnable())
-			if(flow!=null && flow.getListOfCommands()!=null)
-				ProgressBar.expected+=flow.getListOfCommands().size();
-			
+
+		if (config.isProgressBarEnable())
+			if (flow != null && flow.getListOfCommands() != null)
+				ProgressBar.setExpected(ProgressBar.getExpected()
+						+ flow.getListOfCommands().size());
+
 		if (!flow.isInPreCycle())
 			currentFlowUnderExecution = flow;
 		int result = 1;
@@ -318,11 +331,12 @@ public class Executer {
 	 */
 	private void cleanEnvironment(Environment environment) {
 		logger.info("Clean environment: " + environment);
-		
-		if(config.isProgressBarEnable()){
-			ProgressBar.progressBar.setToolTipText("Clean Env:"+environment.toString());
+
+		if (config.isProgressBarEnable()) {
+			Controller.progressBar.getProgressBar().setToolTipText(
+					"Clean Env:" + environment.toString());
 		}
-		
+
 		webDriver.quit();
 		currentFlowUnderExecution = new Flow();
 	}
@@ -336,9 +350,10 @@ public class Executer {
 	 */
 	private void setupEnvironment(Environment environment) throws Exception {
 		logger.info("Setup environment: " + environment);
-		
-		if(config.isProgressBarEnable()){
-			ProgressBar.progressBar.setToolTipText("Setup Env:"+environment.toString());
+
+		if (config.isProgressBarEnable()) {
+			Controller.progressBar.getProgressBar().setToolTipText(
+					"Setup Env:" + environment.toString());
 		}
 
 		// localhost
@@ -488,12 +503,13 @@ public class Executer {
 	 */
 	private void executeCommand(Command command) throws Exception {
 		logger.info("Execute command: " + command);
-		
-		if(config.isProgressBarEnable()){
-			ProgressBar.progressBar.setToolTipText(command.toString());
-			ProgressBar.setValue();
+
+		if (config.isProgressBarEnable()) {
+			Controller.progressBar.getProgressBar().setToolTipText(
+					command.toString());
+			Controller.progressBar.setValue();
 		}
-		
+
 		command.setWebDriver(webDriver);
 
 		if (command instanceof ClickLinkCommand) {

@@ -36,7 +36,7 @@ public final class Constants {
 	public static final String BUILD = "build";
 	public static final String SUITE_DIR = "suiteDir";
 	public static final String REPORT_DIR = "reportDir";
-	
+
 	public static final String PROGRESS_BAR_ENABLE = "progress.bar.enable";
 
 	public static final String EMAIL_ENABLE = "email.enable";
@@ -65,7 +65,6 @@ public final class Constants {
 	public static final String SAFARI = "Safari";
 	public static final String OPERA = "Opera";
 	public static final String IPHONE = "Iphone";
-	
 
 	public static final String XP = "xp";
 	public static final String MAC = "mac";
